@@ -1,0 +1,35 @@
+include <tunables/global>
+
+profile buildkit flags=(attach_disconnected, mediate_deleted) {
+  include <abstractions/apache2-common>
+  include <abstractions/base>
+  include <abstractions/postfix-common>
+
+  capability chown,
+  capability dac_override,
+  capability fowner,
+  capability fsetid,
+  capability kill,
+  capability setgid,
+  capability setuid,
+  capability sys_admin,
+
+  network,
+
+  mount,
+  umount,
+
+  signal receive set=int peer=copacetic,
+  signal receive set=term peer=copacetic,
+  signal receive set=urg peer=copacetic,
+  signal send set=int peer=copacetic,
+  signal send set=term peer=copacetic,
+  signal send set=urg peer=copacetic,
+
+  ptrace read peer=copacetic,
+
+  pivot_root,
+
+  file,
+
+}
