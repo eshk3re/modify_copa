@@ -30,4 +30,4 @@ RUN chown -R copuser:copgroup /workspace
 
 USER copuser
 
-CMD ["sh"]
+CMD ["bash"]
