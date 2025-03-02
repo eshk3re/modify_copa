@@ -1,4 +1,4 @@
-FROM golang:alpine AS builder
+FROM golang:alpine3.21 AS builder
 
 RUN apk add --no-cache git make
 
@@ -10,13 +10,13 @@ COPY patch.go cmd.go ./pkg/patch/
 
 RUN make && mv dist/linux_amd64/release/copa /copa
 
-FROM alpine:latest
+FROM alpine:3.21
 
 RUN apk add --no-cache bash curl docker skopeo \
     && curl -sSL https://github.com/aquasecurity/trivy/releases/download/v0.57.1/trivy_0.57.1_Linux-64bit.tar.gz \
     | tar -xz -C /usr/local/bin \
     && chmod +x /usr/local/bin/trivy \
-    && rm -rf /var/cache/apk/*
+    && rm -rf /var/cache/apk/* && apk update && apk upgrade
 
 RUN addgroup -S copgroup && adduser -S copuser -G copgroup
 
@@ -30,4 +30,4 @@ RUN chown -R copuser:copgroup /workspace
 
 USER copuser
 
-CMD ["bash"]
+CMD ["sh"]
