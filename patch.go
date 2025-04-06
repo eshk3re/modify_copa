@@ -35,7 +35,6 @@ import (
 	"github.com/quay/claircore/osrelease"
 )
 
-//##########################################################################################
 const (
 	copaProduct     = "copa"
 	defaultRegistry = "docker.io"
@@ -82,7 +81,7 @@ func patchWithContext(ctx context.Context, ch chan error, image, reportFile, pat
 	if reportFile == "" && output != "" {
 		log.Warn("No vulnerability report was provided, so no VEX output will be generated.")
 	}
-//###########################################################################################################################
+
 	// parse the image reference
 	imageName, err := reference.ParseNormalizedNamed(image)
 	if err != nil {
@@ -207,7 +206,7 @@ func patchWithContext(ctx context.Context, ch chan error, image, reportFile, pat
 				Updates: []unversioned.UpdatePackage{},
 			}
 		}
-//############################################################################################################
+
 		solveResponse, err := bkClient.Build(ctx, solveOpt, copaProduct, func(ctx context.Context, c gwclient.Client) (*gwclient.Result, error) {
 			// Configure buildctl/client for use by package manager
 			config, err := buildkit.InitializeBuildkitConfig(ctx, c, imageName.String())
