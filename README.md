@@ -1,5 +1,5 @@
 # modify_copa
-Файлы cmd.go и patch.go должны находится в одной директории с Dockerfile при сборке образа.  
+Файлы cmd.go и patch.go (подходят под copacetic версии 0.10.0) должны находится в одной директории с Dockerfile при сборке образа.  
   
 Помещаем профиль apparmor_buildkit в директорию /etc/apparmor.d/. Импортируем профиль с помощью команды   
 ```sudo apparmor_parser -r -W /etc/apparmor.d/apparmor_buildkit```.  
