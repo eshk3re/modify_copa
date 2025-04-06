@@ -2,7 +2,7 @@
 Файлы cmd.go и patch.go (подходят под copacetic версии 0.10.0) должны находится в одной директории с Dockerfile при сборке образа.  
   
 Помещаем профиль apparmor_buildkit в директорию /etc/apparmor.d/. Импортируем профиль с помощью команды   
-```sudo apparmor_parser -r -W /etc/apparmor.d/apparmor_buildkit```.  
+```sudo apparmor_parser -r -W /etc/apparmor.d/apparmor_buildkit```  
   
 Применяем профили на контейнер при запуске контейнера с помощью флагов --security-opt:    
 ```docker run --rm --name buildkitd --security-opt seccomp=/path/to/seccomp_buildkit.json --security-opt apparmor=apparmor_buildkit moby/buildkit:rootless --oci-worker-no-process-sandbox --addr tcp://0.0.0.0:1234```    
