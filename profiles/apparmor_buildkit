@@ -19,14 +19,14 @@ profile apparmor_buildkit flags=(attach_disconnected, mediate_deleted) {
   mount,
   umount,
 
-  signal receive set=int peer=copacetic,
-  signal receive set=term peer=copacetic,
-  signal receive set=urg peer=copacetic,
-  signal send set=int peer=copacetic,
-  signal send set=term peer=copacetic,
-  signal send set=urg peer=copacetic,
+  signal receive set=int peer=apparmor_buildkit,
+  signal receive set=term peer=apparmor_buildkit,
+  signal receive set=urg peer=apparmor_buildkit,
+  signal send set=int peer=apparmor_buildkit,
+  signal send set=term peer=apparmor_buildkit,
+  signal send set=urg peer=apparmor_buildkit,
 
-  ptrace read peer=copacetic,
+  ptrace read peer=apparmor_buildkit,
 
   pivot_root,
 
