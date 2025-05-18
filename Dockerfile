@@ -4,11 +4,12 @@ RUN apk add --no-cache git make
 
 WORKDIR /build
 
-RUN git clone https://github.com/project-copacetic/copacetic.git . && rm ./pkg/patch/cmd.go ./pkg/patch/patch.go
+RUN wget https://github.com/project-copacetic/copacetic/archive/refs/tags/v0.10.0.tar.gz && \
+    tar -xvf v0.10.0.tar.gz && cd copacetic-0.10.0 && rm ./pkg/patch/cmd.go ./pkg/patch/patch.go
 
-COPY patch.go cmd.go ./pkg/patch/
+COPY patch.go cmd.go ./copacetic-0.10.0/pkg/patch/
 
-RUN make && mv dist/linux_amd64/release/copa /copa
+RUN cd copacetic-0.10.0 && make && mv dist/linux_amd64/release/copa /copa
 
 FROM alpine:3.21
 
